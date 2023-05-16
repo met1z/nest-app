@@ -5,6 +5,7 @@ import { AppService } from './app.service'
 import { PostModule } from './post/post.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { typeOrmAsyncConfig } from './config/typeorm.config'
+import { CategoryModule } from './category/category.module';
 
 @Module({
 	imports: [
@@ -13,7 +14,8 @@ import { typeOrmAsyncConfig } from './config/typeorm.config'
 			envFilePath: '.env',
 			isGlobal: true
 		}),
-		TypeOrmModule.forRootAsync(typeOrmAsyncConfig)
+		TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+		CategoryModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

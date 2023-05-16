@@ -12,7 +12,6 @@ import { PostService } from './post.service'
 import { CreatePostDto } from './dto/create-post.dto'
 import { UpdatePostDto } from './dto/update-post.dto'
 import { Post as PostEntity } from './entities/post.entity'
-import { query } from 'express'
 import { GetPostDto } from './dto/get-posts.dto'
 
 @Controller('post')
