@@ -22,8 +22,7 @@ export class PostController {
 
   @Get()
   findAll() {
-    return 'роут работает';
-    // return this.postService.findAll();
+    return this.postService.findAll();
   }
 
   @Get(':id')
