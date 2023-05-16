@@ -5,12 +5,15 @@ import {
 	Body,
 	Patch,
 	Param,
-	Delete
+	Delete,
+	Query
 } from '@nestjs/common'
 import { PostService } from './post.service'
 import { CreatePostDto } from './dto/create-post.dto'
 import { UpdatePostDto } from './dto/update-post.dto'
 import { Post as PostEntity } from './entities/post.entity'
+import { query } from 'express'
+import { GetPostDto } from './dto/get-posts.dto'
 
 @Controller('post')
 export class PostController {
@@ -22,8 +25,8 @@ export class PostController {
 	}
 
 	@Get()
-	findAll() {
-		return this.postService.findAll()
+	findAll(@Query() query: GetPostDto): Promise<PostEntity[]> {
+		return this.postService.findAll(query)
 	}
 
 	@Get(':id')

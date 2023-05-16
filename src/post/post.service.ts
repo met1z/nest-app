@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException, Param } from '@nestjs/common'
+import { Injectable, NotFoundException, Param, Query } from '@nestjs/common'
 import { CreatePostDto } from './dto/create-post.dto'
 import { UpdatePostDto } from './dto/update-post.dto'
 import { PostRepository } from './repository/post.repository'
 import { Post as PostEntity } from './entities/post.entity'
+import { GetPostDto } from './dto/get-posts.dto'
 
 @Injectable()
 export class PostService {
@@ -13,8 +14,8 @@ export class PostService {
 		return this.postRepository.save(newPost)
 	}
 
-	findAll() {
-		return this.postRepository.find()
+	findAll(@Query() getPostDto: GetPostDto): Promise<PostEntity[]> {
+		return this.postRepository.getPosts(getPostDto)
 	}
 
 	async findOne(@Param('id') id: string): Promise<PostEntity[]> {
